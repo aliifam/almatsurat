@@ -1,34 +1,42 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import { Setting } from "./pages/Setting";
+import { SugroPagi } from "./pages/SugroPagi";
+import { SugroPetang } from "./pages/SugroPetang";
+import { KubroPagi } from "./pages/KubroPagi";
+import { KubroPetang } from "./pages/KubroPetang";
 
 export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <h1 className="text-3xl font-bold underline">Hello world!</h1>,
+      element: <Home />,
+      errorElement: <h1>Not Found</h1>,
     },
     {
       path: "/about",
-      element: <h1 className="text-3xl font-bold underline">About us</h1>,
+      element: <About />,
     },
     {
       path: "/setting",
-      element: <h1 className="text-3xl font-bold underline">Setting</h1>,
+      element: <Setting />,
     },
     {
       path: "/pagi-sugro",
-      element: <h1 className="text-3xl font-bold underline">Pagi kubro</h1>,
+      element: <SugroPagi />,
     },
     {
       path: "/petang-sugro",
-      element: <h1 className="text-3xl font-bold underline">Petang kubro</h1>,
+      element: <SugroPetang />,
     },
     {
       path: "/pagi-kubro",
-      element: <h1 className="text-3xl font-bold underline">Pagi kubro</h1>,
+      element: <KubroPagi />,
     },
     {
       path: "/petang-kubro",
-      element: <h1 className="text-3xl font-bold underline">Petang kubro</h1>,
+      element: <KubroPetang />,
     },
   ]);
   return <RouterProvider router={router} />;

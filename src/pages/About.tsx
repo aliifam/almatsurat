@@ -1,9 +1,7 @@
-import Layout from "../components/Layout";
-
-export default function About() {
+export const About = () => {
   return (
-    <Layout>
-      <p>About</p>
-    </Layout>
+    <div>
+      <h1>Home</h1>
+    </div>
   );
-}
+};
