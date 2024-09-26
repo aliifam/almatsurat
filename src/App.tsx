@@ -23,19 +23,19 @@ export default function App() {
       element: <Setting />,
     },
     {
-      path: "/pagi-sugro",
+      path: "/sugro-pagi",
       element: <SugroPagi />,
     },
     {
-      path: "/petang-sugro",
+      path: "/sugro-petang",
       element: <SugroPetang />,
     },
     {
-      path: "/pagi-kubro",
+      path: "/kubro-pagi",
       element: <KubroPagi />,
     },
     {
-      path: "/petang-kubro",
+      path: "/kubro-petang",
       element: <KubroPetang />,
     },
   ]);
