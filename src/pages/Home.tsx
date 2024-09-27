@@ -1,11 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
 
 export const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black text-white">
+    <Layout>
       <Helmet>
         <title>Al-Matsurat Online</title>
         <meta
@@ -29,35 +30,30 @@ export const Home = () => {
         <div className="space-y-4 w-full">
           <button
             onClick={() => navigate("/sugro-pagi")}
-            className="w-full bg-white text-black py-3 rounded-lg font-semibold hover:bg-gray-200"
+            className="w-full border rounded-lg bg-gray-50 text-black py-3 font-semibold hover:bg-gray-200"
           >
             Sugro Pagi
           </button>
           <button
             onClick={() => navigate("/sugro-petang")}
-            className="w-full bg-white text-black py-3 rounded-lg font-semibold hover:bg-gray-200"
+            className="w-full bg-white text-black py-3 font-semibold hover:bg-gray-200"
           >
             Sugro Petang
           </button>
           <button
             onClick={() => navigate("/kubro-pagi")}
-            className="w-full bg-white text-black py-3 rounded-lg font-semibold hover:bg-gray-200"
+            className="w-full bg-white text-black py-3 font-semibold hover:bg-gray-200"
           >
             Kubro Pagi
           </button>
           <button
             onClick={() => navigate("/kubro-petang")}
-            className="w-full bg-white text-black py-3 rounded-lg font-semibold hover:bg-gray-200"
+            className="w-full bg-white text-black py-3 font-semibold hover:bg-gray-200"
           >
             Kubro Petang
           </button>
         </div>
-
-        {/* Footer */}
-        <footer className="mt-10 text-gray-500 text-sm">
-          create with ❤️ by AAM in Yogyakarta
-        </footer>
       </div>
-    </div>
+    </Layout>
   );
 };
