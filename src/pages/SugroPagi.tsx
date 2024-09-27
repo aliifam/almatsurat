@@ -1,10 +1,47 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "../components/Layout";
-import { SunIcon } from "@heroicons/react/24/solid";
+import {
+  SunIcon,
+  CheckCircleIcon,
+  XCircleIcon,
+} from "@heroicons/react/24/solid";
 import data from "../data/sugro-pagi.json";
 
 export const SugroPagi = () => {
-  console.log(data);
+  // Initialize state for counting taps on each dzikir's icon
+  const [counts, setCounts] = useState(() => Array(data.data.length).fill(0));
+  const [showNumber, setShowNumber] = useState(() =>
+    Array(data.data.length).fill(false)
+  );
+
+  // Function to handle icon click and increment the count
+  const handleIconClick = (index: number) => {
+    setCounts((prevCounts) => {
+      const newCounts = [...prevCounts];
+      newCounts[index] += 1;
+
+      // Show number on icon for a brief moment if count is less than repeat
+      if (newCounts[index] <= data.data[index].repeat) {
+        setShowNumber((prevShow) => {
+          const newShow = [...prevShow];
+          newShow[index] = true;
+          return newShow;
+        });
+
+        setTimeout(() => {
+          setShowNumber((prevShow) => {
+            const newShow = [...prevShow];
+            newShow[index] = false;
+            return newShow;
+          });
+        }, 1000); // Show number for 1 second
+      }
+
+      return newCounts;
+    });
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -18,7 +55,7 @@ export const SugroPagi = () => {
         <SunIcon className="h-8 w-8 inline-block ml-2" />
       </h1>
       {data.data.map((item, index) => (
-        <div key={index} className="mb-6 p-4 bg-white rounded-lg shadow-lg">
+        <div key={index} className="mb-6 p-4 rounded-lg shadow-lg bg-white">
           <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
           {item.arabic && (
             <p className="text-lg font-bold text-right text-gray-700">
@@ -47,6 +84,27 @@ export const SugroPagi = () => {
               ))}
             </div>
           )}
+
+          {/* Icon section for tap action */}
+          <div className="flex justify-center items-center mt-4">
+            <button
+              onClick={() => handleIconClick(index)}
+              className="flex flex-col items-center"
+            >
+              {showNumber[index] ? (
+                <span className="h-10 w-10 flex items-center justify-center text-xl text-blue-500">
+                  {counts[index]}
+                </span>
+              ) : counts[index] >= item.repeat ? (
+                <CheckCircleIcon className="h-10 w-10 text-green-600" />
+              ) : (
+                <XCircleIcon className="h-10 w-10 text-gray-400" />
+              )}
+              <span className="mt-2 text-gray-600">
+                Tap Count: {counts[index]} / {item.repeat}
+              </span>
+            </button>
+          </div>
         </div>
       ))}
     </Layout>
