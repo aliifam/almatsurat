@@ -18,7 +18,9 @@ export const ThemeContext = createContext<ThemeContextProps | undefined>(
   undefined
 );
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
+  children,
+}) => {
   // Cek localStorage untuk tema dan ukuran font
   const getInitialTheme = (): string =>
     localStorage.getItem("theme") || "light";

@@ -19,7 +19,7 @@ export const Home = () => {
         />
       </Helmet>
 
-      <div className="w-full max-w-md text-center py-10 px-6">
+      <div className="w-full max-w-md text-center py-10 px-2">
         {/* Heading */}
         <h1 className="text-3xl font-bold mb-4">Al-Matsurat Online</h1>
         <p className="text-sm mb-8">

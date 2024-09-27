@@ -1,7 +1,9 @@
+import Layout from "../components/Layout";
+
 export const SugroPagi = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Layout>
+      <p>Sugro Pagi</p>
+    </Layout>
   );
 };

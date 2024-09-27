@@ -11,7 +11,7 @@ import {
   Cog6ToothIcon,
   CheckIcon,
   ChevronUpDownIcon,
-} from "@heroicons/react/24/solid";
+} from "@heroicons/react/24/outline";
 import Layout from "../components/Layout";
 
 // Font size options
