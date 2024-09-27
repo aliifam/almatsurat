@@ -18,9 +18,49 @@ export const About = () => {
         membaca dzikir Al-Matsurat harian. data dzikir yang ada di website ini
         diambil dari buku Al-Matsurat yang ditulis oleh Imam Hasan Al-Banna.
       </p>
+      <p className="leading-relaxed mb-4 p-4 border rounded-lg bg-gray-50">
+        Website ini open source, silahkan berkontribusi di{" "}
+        <a
+          href="https://github.com/username/repo" // Ganti dengan URL repo GitHub Anda
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 underline"
+        >
+          sini
+        </a>
+        , bila ada kesalahan dalam website terutama ayat dan doa nya mohon untuk
+        segera melaporkan ke{" "}
+        <a
+          href="mailto:me@aliifam.com" // Ganti dengan email Anda
+          className="text-blue-500 underline"
+        >
+          me@aliifam.com
+        </a>
+        .
+      </p>
+
       <p className="leading-relaxed p-4 border rounded-lg bg-gray-50">
-        Website ini open source, silahkan berkontribusi di , bila ada kesalahan
-        dalam website terutama ayat dan doa nya mohon untuk segera melaporkan di{" "}
+        Berikut sumber data yang digunakan dalam website ini:
+        <ol className="list-decimal pl-8 mt-2">
+          <li>
+            <a
+              href="https://quran.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              quran.com
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://almatsurat.net/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              almatsurat.net
+            </a>
+          </li>
+        </ol>
       </p>
     </Layout>
   );

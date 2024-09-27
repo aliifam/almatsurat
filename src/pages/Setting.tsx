@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import {
   Switch,
   Listbox,
   ListboxButton,
   ListboxOptions,
+  Transition,
   ListboxOption,
 } from "@headlessui/react";
 import {
@@ -117,40 +118,53 @@ export const Setting = () => {
                     />
                   </span>
                 </ListboxButton>
-                {/* Display Listbox to open upwards */}
-                <ListboxOptions className="absolute bottom-full mb-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                  {fontSizes.map((size) => (
-                    <ListboxOption
-                      key={size.value}
-                      className={({ active }) =>
-                        `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                          active ? "bg-blue-100 text-blue-900" : "text-gray-900"
-                        }`
-                      }
-                      value={size}
-                    >
-                      {({ selected }) => (
-                        <>
-                          <span
-                            className={`block truncate ${
-                              selected ? "font-medium" : "font-normal"
-                            }`}
-                          >
-                            {size.name}
-                          </span>
-                          {selected ? (
-                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                              <CheckIcon
-                                className="w-5 h-5"
-                                aria-hidden="true"
-                              />
+
+                {/* Transition for Listbox options */}
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-200"
+                  enterFrom="transform opacity-0 -translate-y-1"
+                  enterTo="transform opacity-100 translate-y-0"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="transform opacity-100 translate-y-0"
+                  leaveTo="transform opacity-0 -translate-y-1"
+                >
+                  <ListboxOptions className="absolute bottom-full mb-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    {fontSizes.map((size) => (
+                      <ListboxOption
+                        key={size.value}
+                        className={({ active }) =>
+                          `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                            active
+                              ? "bg-blue-100 text-blue-900"
+                              : "text-gray-900"
+                          }`
+                        }
+                        value={size}
+                      >
+                        {({ selected }) => (
+                          <>
+                            <span
+                              className={`block truncate ${
+                                selected ? "font-medium" : "font-normal"
+                              }`}
+                            >
+                              {size.name}
                             </span>
-                          ) : null}
-                        </>
-                      )}
-                    </ListboxOption>
-                  ))}
-                </ListboxOptions>
+                            {selected ? (
+                              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                                <CheckIcon
+                                  className="w-5 h-5"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            ) : null}
+                          </>
+                        )}
+                      </ListboxOption>
+                    ))}
+                  </ListboxOptions>
+                </Transition>
               </div>
             </Listbox>
           </div>

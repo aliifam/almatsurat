@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/solid";
 import { HeaderMenu } from "./HeaderMenu";
+import { Transition } from "@headlessui/react"; // Import Transition
+import { Fragment } from "react"; // Needed for the Transition component
 
 export default function Layout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
@@ -29,7 +31,22 @@ export default function Layout({ children }: { children: ReactNode }) {
             <HeaderMenu />
           </div>
         </nav>
-        {children}
+
+        {/* Transition for page content */}
+        <Transition
+          as={Fragment}
+          appear={true}
+          show={true}
+          enter="transition-transform duration-500"
+          enterFrom="transform scale-75"
+          enterTo="transform scale-100"
+          leave="transition-transform duration-500"
+          leaveFrom="transform scale-100"
+          leaveTo="transform scale-75"
+        >
+          <div>{children}</div>
+        </Transition>
+
         <footer className="mt-10 text-gray-500 text-sm text-center">
           <p>
             created with{" "}

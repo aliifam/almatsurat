@@ -1,9 +1,34 @@
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
+import { SunIcon, MoonIcon, BookOpenIcon } from "@heroicons/react/24/solid"; // Import ikon yang diperlukan
 import Layout from "../components/Layout";
 
 export const Home = () => {
   const navigate = useNavigate();
+
+  // Data untuk tombol
+  const buttons = [
+    {
+      label: "Sugro Pagi",
+      icon: <SunIcon className="h-5 w-5 mr-2" />,
+      path: "/sugro-pagi",
+    },
+    {
+      label: "Sugro Petang",
+      icon: <MoonIcon className="h-5 w-5 mr-2" />,
+      path: "/sugro-petang",
+    },
+    {
+      label: "Kubro Pagi",
+      icon: <SunIcon className="h-5 w-5 mr-2" />,
+      path: "/kubro-pagi",
+    },
+    {
+      label: "Kubro Petang",
+      icon: <MoonIcon className="h-5 w-5 mr-2" />,
+      path: "/kubro-petang",
+    },
+  ];
 
   return (
     <Layout>
@@ -20,38 +45,27 @@ export const Home = () => {
       </Helmet>
 
       <div className="w-full max-w-md text-center py-10 px-2">
-        {/* Heading */}
-        <h1 className="text-3xl font-bold mb-4">Al-Matsurat Online</h1>
+        {/* Heading with Book Icon */}
+        <h1 className="text-3xl font-bold mb-4">
+          <BookOpenIcon className="h-8 w-8 inline-block mr-2" />
+          Al-Matsurat Online
+        </h1>
         <p className="text-sm mb-8">
-          Biasakan membaca almatsurat setiap pagi dan petang
+          Biasakan membaca Al-Matsurat setiap pagi dan petang
         </p>
 
         {/* Links Section */}
         <div className="space-y-4 w-full">
-          <button
-            onClick={() => navigate("/sugro-pagi")}
-            className="w-full border rounded-lg bg-gray-50 text-black py-3 font-semibold hover:bg-gray-200"
-          >
-            Sugro Pagi
-          </button>
-          <button
-            onClick={() => navigate("/sugro-petang")}
-            className="w-full bg-white text-black py-3 font-semibold hover:bg-gray-200"
-          >
-            Sugro Petang
-          </button>
-          <button
-            onClick={() => navigate("/kubro-pagi")}
-            className="w-full bg-white text-black py-3 font-semibold hover:bg-gray-200"
-          >
-            Kubro Pagi
-          </button>
-          <button
-            onClick={() => navigate("/kubro-petang")}
-            className="w-full bg-white text-black py-3 font-semibold hover:bg-gray-200"
-          >
-            Kubro Petang
-          </button>
+          {buttons.map((button) => (
+            <button
+              key={button.label}
+              onClick={() => navigate(button.path)}
+              className="w-full border rounded-lg bg-gray-50 text-black py-3 font-semibold hover:bg-gray-200 flex items-center justify-center"
+            >
+              {button.icon}
+              {button.label}
+            </button>
+          ))}
         </div>
       </div>
     </Layout>
