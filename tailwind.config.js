@@ -3,8 +3,8 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      sans: ["Inter var", "sans-serif"],
-      arabic: ["Tajawal", "sans-serif"],
+      sans: ["SansFont", "sans-serif"],
+      arabic: ["ArabicFont", "sans-serif"],
     },
     extend: {},
   },

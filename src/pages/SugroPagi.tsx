@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "../components/Layout";
-import { SunIcon } from "@heroicons/react/24/solid";
 import data from "../data/sugro-pagi.json";
 import DzikirItem from "../components/DzikirItem";
 import { DzikirItemType } from "../types/types";
+import ShareButton from "../components/ShareButton";
 import BackToTopButton from "../components/BackToTop";
 
 export const SugroPagi = () => {
@@ -32,7 +32,7 @@ export const SugroPagi = () => {
             newShow[index] = false;
             return newShow;
           });
-        }, 500);
+        }, 200);
       }
 
       return newCounts;
@@ -46,10 +46,13 @@ export const SugroPagi = () => {
         <meta name="description" content="Almatsurat Sugro Pagi" />
         <meta name="keywords" content="Almatsurat Sugro Pagi" />
       </Helmet>
-      <h1 className="text-3xl font-bold mb-4 text-center">
+      <h1 className="flex items-center justify-center text-3xl font-bold mb-4">
         Al-Matsurat Sugro Pagi
-        <SunIcon className="h-8 w-8 inline-block ml-2" />
       </h1>
+      <div className="flex items-center justify-center">
+        <ShareButton />
+      </div>
+
       {dzikirData.map((item, index) => (
         <DzikirItem
           key={index}

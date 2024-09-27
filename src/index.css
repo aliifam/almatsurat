@@ -4,7 +4,18 @@
 
 @layer base {
   @font-face {
-    font-family: "Uthmani";
-    src: url();
+    font-family: "SansFont";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/arabic.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: "ArabicFont";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/arabic.otf) format("opentype");
   }
 }

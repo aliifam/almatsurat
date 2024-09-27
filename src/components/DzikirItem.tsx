@@ -18,10 +18,10 @@ const DzikirItem: React.FC<DzikirItemProps> = ({
   onIconClick,
 }) => {
   return (
-    <div className="mb-6 p-4 rounded-lg shadow-lg bg-white">
+    <div className="mb-6 p-4 rounded-lg shadow-lg bg-gray-50 border hover:shadow-xl">
       <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
       {item.arabic && (
-        <p className="text-lg font-bold text-right text-gray-700">
+        <p className="text-3xl leading-relaxed text-right text-gray-700 font-arabic">
           {item.arabic}
         </p>
       )}

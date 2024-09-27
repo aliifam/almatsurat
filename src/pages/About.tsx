@@ -15,8 +15,8 @@ export const About = () => {
       </div>
       <p className="leading-relaxed mb-4 p-4 border rounded-lg bg-gray-50">
         Al-Matsurat Online adalah website yang dapat memudahkan pengguna dalam
-        membaca dzikir Al-Matsurat harian. data dzikir yang ada di website ini
-        diambil dari buku Al-Matsurat yang ditulis oleh Imam Hasan Al-Banna.
+        membaca dzikir Al-Matsurat harian. klik salah satu tombol untuk memilih
+        dzikir yang ingin dibaca, lalu klik icon X untuk menambahkan hitungan.
       </p>
       <p className="leading-relaxed mb-4 p-4 border rounded-lg bg-gray-50">
         Website ini open source, silahkan berkontribusi di{" "}
