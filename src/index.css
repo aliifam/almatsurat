@@ -6,15 +6,13 @@
   @font-face {
     font-family: "SansFont";
     font-style: normal;
-    font-weight: 400;
     font-display: swap;
-    src: url(/fonts/arabic.otf) format("opentype");
+    src: url(/fonts/inter.woff2) format("woff2");
   }
 
   @font-face {
     font-family: "ArabicFont";
     font-style: normal;
-    font-weight: 400;
     font-display: swap;
     src: url(/fonts/arabic.otf) format("opentype");
   }
