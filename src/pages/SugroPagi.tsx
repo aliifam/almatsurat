@@ -5,6 +5,7 @@ import { SunIcon } from "@heroicons/react/24/solid";
 import data from "../data/sugro-pagi.json";
 import DzikirItem from "../components/DzikirItem";
 import { DzikirItemType } from "../types/types";
+import BackToTopButton from "../components/BackToTop";
 
 export const SugroPagi = () => {
   const dzikirData: DzikirItemType[] = data.data; // Tipe data untuk dzikir
@@ -31,7 +32,7 @@ export const SugroPagi = () => {
             newShow[index] = false;
             return newShow;
           });
-        }, 1000);
+        }, 500);
       }
 
       return newCounts;
@@ -59,6 +60,7 @@ export const SugroPagi = () => {
           onIconClick={handleIconClick}
         />
       ))}
+      <BackToTopButton />
     </Layout>
   );
 };
