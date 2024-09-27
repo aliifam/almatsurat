@@ -6,13 +6,14 @@ import { SugroPagi } from "./pages/SugroPagi";
 import { SugroPetang } from "./pages/SugroPetang";
 import { KubroPagi } from "./pages/KubroPagi";
 import { KubroPetang } from "./pages/KubroPetang";
+import { Error } from "./pages/Error";
 
 export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
-      errorElement: <h1>Not Found</h1>,
+      errorElement: <Error />,
     },
     {
       path: "/about",

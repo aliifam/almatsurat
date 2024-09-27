@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/solid";
 import { HeaderMenu } from "./HeaderMenu";
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -31,7 +31,18 @@ export default function Layout({ children }: { children: ReactNode }) {
         </nav>
         {children}
         <footer className="mt-10 text-gray-500 text-sm text-center">
-          create with ❤️ by AAM in Yogyakarta
+          <p>
+            created with{" "}
+            <a
+              href="https://aliifam.com" // Ganti dengan link yang diinginkan
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block transform transition-transform duration-300 hover:scale-110 cursor-pointer"
+            >
+              <HeartIcon className="h-5 w-5 inline text-red-500 hover:text-red-600" />
+            </a>{" "}
+            in Yogyakarta, Indonesia
+          </p>
         </footer>
       </div>
     </div>
