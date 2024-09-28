@@ -41,10 +41,24 @@ export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
 
   const getInitialFontSize = (): string =>
     localStorage.getItem("fontSize") || "medium";
-  const getInitialLatin = (): boolean =>
-    localStorage.getItem("latinVisible") === "true" || true;
-  const getInitialTranslation = (): boolean =>
-    localStorage.getItem("translationVisible") === "true" || true;
+
+  const getInitialLatin = (): boolean => {
+    const savedLatinVisible = localStorage.getItem("latinVisible");
+    if (savedLatinVisible) {
+      return savedLatinVisible === "true" ? true : false;
+    } else {
+      return true;
+    }
+  };
+
+  const getInitialTranslation = (): boolean => {
+    const savedTranslationVisible = localStorage.getItem("translationVisible");
+    if (savedTranslationVisible) {
+      return savedTranslationVisible === "true" ? true : false;
+    } else {
+      return true;
+    }
+  };
 
   // State untuk tema dan ukuran font
   const [theme, setTheme] = useState<string>(getInitialTheme);
