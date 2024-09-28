@@ -25,9 +25,10 @@ export const About = () => {
             : "bg-gray-50 text-gray-700"
         }`}
       >
-        Al-Matsurat Online adalah website yang dapat memudahkan pengguna dalam
-        membaca dzikir Al-Matsurat harian. Klik salah satu tombol untuk memilih
-        dzikir yang ingin dibaca, lalu klik icon X untuk menambahkan hitungan.
+        Al-Matsurat Online adalah progressive web app berupa website yang dapat
+        diinstall juga layaknya aplikasi dan bekerja secara offline. Klik salah
+        satu tombol untuk memilih dzikir yang ingin dibaca, lalu klik icon X
+        untuk menambahkan hitungan.
       </p>
 
       <p
