@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import {
   Switch,
   Listbox,
@@ -14,6 +14,7 @@ import {
   ChevronUpDownIcon,
 } from "@heroicons/react/24/outline";
 import Layout from "../components/Layout";
+import { useThemeContext } from "../hooks/useThemeContext";
 
 // Font size options
 const fontSizes = [
@@ -23,10 +24,19 @@ const fontSizes = [
 ];
 
 export const Setting = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isMeaningVisible, setIsMeaningVisible] = useState(true);
-  const [isLatinVisible, setIsLatinVisible] = useState(true);
-  const [selectedFontSize, setSelectedFontSize] = useState(fontSizes[1]); // Default to Medium
+  const {
+    theme,
+    toggleTheme,
+    fontSize,
+    changeFontSize,
+    latinVisible,
+    toggleLatin,
+    translationVisible,
+    toggleTranslation,
+  } = useThemeContext(); // Gunakan ThemeContext
+
+  const selectedFontSize =
+    fontSizes.find((size) => size.value === fontSize) || fontSizes[1]; // Default to Medium
 
   return (
     <Layout>
@@ -49,20 +59,20 @@ export const Setting = () => {
           <p>This is a preview of the selected font size.</p>
         </div>
 
-        {/* Settings Group (without separated borders) */}
+        {/* Settings Group */}
         <div className="border rounded-lg divide-y divide-gray-200">
           {/* Theme Toggle */}
           <div className="flex justify-between items-center py-4 px-4">
             <span>Dark Mode</span>
             <Switch
-              checked={isDarkMode}
-              onChange={setIsDarkMode}
-              className={`${isDarkMode ? "bg-blue-600" : "bg-gray-200"}
+              checked={theme === "dark"} // Menggunakan theme dari context
+              onChange={toggleTheme}
+              className={`${theme === "dark" ? "bg-blue-600" : "bg-gray-200"}
                 relative inline-flex h-6 w-11 items-center rounded-full`}
             >
               <span
                 className={`${
-                  isDarkMode ? "translate-x-6" : "translate-x-1"
+                  theme === "dark" ? "translate-x-6" : "translate-x-1"
                 } inline-block h-4 w-4 transform rounded-full bg-white transition`}
               />
             </Switch>
@@ -72,14 +82,14 @@ export const Setting = () => {
           <div className="flex justify-between items-center py-4 px-4">
             <span>Tampilkan Arti</span>
             <Switch
-              checked={isMeaningVisible}
-              onChange={setIsMeaningVisible}
-              className={`${isMeaningVisible ? "bg-blue-600" : "bg-gray-200"}
+              checked={translationVisible}
+              onChange={toggleTranslation} // Menggunakan toggleTranslation dari context
+              className={`${translationVisible ? "bg-blue-600" : "bg-gray-200"}
                 relative inline-flex h-6 w-11 items-center rounded-full`}
             >
               <span
                 className={`${
-                  isMeaningVisible ? "translate-x-6" : "translate-x-1"
+                  translationVisible ? "translate-x-6" : "translate-x-1"
                 } inline-block h-4 w-4 transform rounded-full bg-white transition`}
               />
             </Switch>
@@ -89,23 +99,26 @@ export const Setting = () => {
           <div className="flex justify-between items-center py-4 px-4">
             <span>Tampilkan Latin</span>
             <Switch
-              checked={isLatinVisible}
-              onChange={setIsLatinVisible}
-              className={`${isLatinVisible ? "bg-blue-600" : "bg-gray-200"}
+              checked={latinVisible}
+              onChange={toggleLatin} // Menggunakan toggleLatin dari context
+              className={`${latinVisible ? "bg-blue-600" : "bg-gray-200"}
                 relative inline-flex h-6 w-11 items-center rounded-full`}
             >
               <span
                 className={`${
-                  isLatinVisible ? "translate-x-6" : "translate-x-1"
+                  latinVisible ? "translate-x-6" : "translate-x-1"
                 } inline-block h-4 w-4 transform rounded-full bg-white transition`}
               />
             </Switch>
           </div>
 
-          {/* Font Size Selector - Inline with Switch */}
+          {/* Font Size Selector */}
           <div className="flex justify-between items-center py-4 px-4">
             <span>Font Size</span>
-            <Listbox value={selectedFontSize} onChange={setSelectedFontSize}>
+            <Listbox
+              value={selectedFontSize}
+              onChange={(size) => changeFontSize(size.value)}
+            >
               <div className="relative">
                 <ListboxButton className="relative w-36 cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 sm:text-sm">
                   <span className="block truncate">
