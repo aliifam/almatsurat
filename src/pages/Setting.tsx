@@ -18,9 +18,9 @@ import { useThemeContext } from "../hooks/useThemeContext";
 
 // Font size options
 const fontSizes = [
-  { name: "Small", value: "small", size: "text-sm" },
-  { name: "Medium", value: "medium", size: "text-base" },
-  { name: "Large", value: "large", size: "text-lg" },
+  { name: "Small", value: "small", size: "text-2xl" },
+  { name: "Medium", value: "medium", size: "text-3xl" },
+  { name: "Large", value: "large", size: "text-4xl" },
 ];
 
 export const Setting = () => {
@@ -53,10 +53,22 @@ export const Setting = () => {
 
         {/* Font Preview */}
         <div
-          className={`mt-6 p-4 border rounded-lg bg-gray-50 ${selectedFontSize.size}`}
+          className={`mt-6 p-4 border rounded-lg bg-gray-50 ${
+            theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
+          }`}
         >
-          <p className="font-bold">Font Size Preview</p>
-          <p>This is a preview of the selected font size.</p>
+          <p className="font-bold">Preview Perubahan :</p>
+          <p className={`text-right font-arabic ${selectedFontSize.size} mb-4`}>
+            بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ
+          </p>
+
+          {latinVisible && (
+            <p className="italic">Bismi llāhi ar-raḥmāni ar-raḥīm</p>
+          )}
+
+          {translationVisible && (
+            <p>Dengan nama Allah Yang Maha Pengasih, Maha Penyayang</p>
+          )}
         </div>
 
         {/* Settings Group */}
