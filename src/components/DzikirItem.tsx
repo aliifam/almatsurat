@@ -54,7 +54,7 @@ const DzikirItem: React.FC<DzikirItemProps> = ({
       {/* Conditionally show Latin text */}
       {latinVisible && item.latin && (
         <p
-          className={`text-gray-500 italic mt-1 ${
+          className={`italic mt-1 ${
             theme === "dark" ? "text-gray-400" : "text-gray-500"
           }`}
         >
