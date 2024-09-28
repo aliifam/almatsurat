@@ -1,7 +1,7 @@
 import { ReactNode, Fragment } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/solid";
-import { HeaderMenu } from "./HeaderMenu";
+import { Header } from "./Header";
 import { Transition } from "@headlessui/react"; // Import Transition
 import { useThemeContext } from "../hooks/useThemeContext"; // Import ThemeContext untuk Dark Mode
 
@@ -37,7 +37,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           )}
           {/* Ensure hamburger is always at the right */}
           <div className={`${isHome ? "ml-auto" : ""}`}>
-            <HeaderMenu />
+            <Header />
           </div>
         </nav>
 

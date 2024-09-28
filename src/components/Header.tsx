@@ -3,7 +3,7 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 import { Link, useLocation } from "react-router-dom";
 import { useThemeContext } from "../hooks/useThemeContext"; // Mengimpor ThemeContext untuk Dark Mode
 
-export const HeaderMenu = () => {
+export const Header = () => {
   const location = useLocation();
   const { theme } = useThemeContext(); // Mendapatkan tema dari context
 
