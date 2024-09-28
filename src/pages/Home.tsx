@@ -1,12 +1,65 @@
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { SunIcon, MoonIcon, BookOpenIcon } from "@heroicons/react/24/solid"; // Import ikon yang diperlukan
+import {
+  SunIcon,
+  MoonIcon,
+  BookOpenIcon,
+  ArrowDownTrayIcon,
+} from "@heroicons/react/24/solid"; // Import ikon yang diperlukan
 import Layout from "../components/Layout";
 import { useThemeContext } from "../hooks/useThemeContext"; // Import ThemeContext
+import { useEffect, useState } from "react";
+
+// Definisikan tipe BeforeInstallPromptEvent jika belum ada
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => void;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
 
 export const Home = () => {
   const navigate = useNavigate();
   const { theme } = useThemeContext(); // Mengambil tema dari context
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null); // State untuk menyimpan event beforeinstallprompt
+  const [isInstallable, setIsInstallable] = useState(false); // Untuk mengontrol tampilan tombol install
+
+  // Tangkap event 'beforeinstallprompt' dan simpan di state
+  useEffect(() => {
+    const handleBeforeInstallPrompt: EventListener = (e: Event) => {
+      const event = e as BeforeInstallPromptEvent;
+      e.preventDefault(); // Cegah prompt otomatis
+      setDeferredPrompt(event as BeforeInstallPromptEvent); // Simpan event di state
+      setIsInstallable(true); // Tampilkan tombol install
+    };
+
+    window.addEventListener(
+      "beforeinstallprompt",
+      handleBeforeInstallPrompt as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt
+      );
+    };
+  }, []);
+
+  // Fungsi untuk menampilkan prompt install
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt(); // Tampilkan prompt
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the A2HS prompt");
+        } else {
+          console.log("User dismissed the A2HS prompt");
+        }
+        setDeferredPrompt(null); // Hapus event setelah prompt ditampilkan
+        setIsInstallable(false); // Sembunyikan tombol setelah install
+      });
+    }
+  };
 
   // Data untuk tombol
   const buttons = [
@@ -56,9 +109,20 @@ export const Home = () => {
           <BookOpenIcon className="h-8 w-8 inline-block mr-2" />
           Al-Matsurat Online
         </h1>
-        <p className="text-sm mb-8">
+        <p className="text-sm mb-4">
           Biasakan membaca Al-Matsurat setiap pagi dan petang
         </p>
+
+        {/* Install Button (small icon only) */}
+        {isInstallable && (
+          <button
+            onClick={handleInstallClick}
+            className="mb-4 inline-flex items-center justify-center p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            aria-label="Install PWA"
+          >
+            <ArrowDownTrayIcon className="h-6 w-6" />
+          </button>
+        )}
 
         {/* Links Section */}
         <div className="space-y-4 w-full">
