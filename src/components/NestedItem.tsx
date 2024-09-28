@@ -33,8 +33,8 @@ const NestedItem: React.FC<NestedItemProps> = ({ subItem }) => {
       {/* Conditionally show Latin text based on latinVisible */}
       {latinVisible && subItem.latin && (
         <p
-          className={`text-gray-500 italic ${
-            theme === "dark" ? "text-gray-300" : "text-gray-500"
+          className={`italic ${
+            theme === "dark" ? "text-gray-400" : "text-gray-500"
           }`}
         >
           {subItem.latin}

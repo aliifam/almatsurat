@@ -6,6 +6,7 @@ import DzikirItem from "../components/DzikirItem";
 import { DzikirItemType } from "../types/types";
 import ShareButton from "../components/ShareButton";
 import BackToTopButton from "../components/BackToTop";
+import Congrat from "../components/Congrat";
 
 export const SugroPagi = () => {
   const dzikirData: DzikirItemType[] = data.data; // Tipe data untuk dzikir
@@ -13,6 +14,7 @@ export const SugroPagi = () => {
   const [showNumber, setShowNumber] = useState(() =>
     Array(dzikirData.length).fill(false)
   );
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
   const handleIconClick = (index: number) => {
     setCounts((prevCounts) => {
@@ -35,6 +37,11 @@ export const SugroPagi = () => {
         }, 200);
       }
 
+      // Cek apakah semua dzikir sudah selesai
+      if (newCounts.every((count, idx) => count >= dzikirData[idx].repeat)) {
+        setDialogOpen(true);
+      }
+
       return newCounts;
     });
   };
@@ -43,8 +50,8 @@ export const SugroPagi = () => {
     <Layout>
       <Helmet>
         <title>{data.title}</title>
-        <meta name="description" content="Almatsurat Sugro Pagi" />
-        <meta name="keywords" content="Almatsurat Sugro Pagi" />
+        <meta name="description" content={`${data.description}`} />
+        <meta name="keywords" content={`${data.description}`} />
       </Helmet>
       <h1 className="flex items-center justify-center text-3xl font-bold mb-4">
         {data.title}
@@ -64,6 +71,14 @@ export const SugroPagi = () => {
         />
       ))}
       <BackToTopButton />
+
+      {/* Completion Dialog */}
+      <Congrat
+        isOpen={isDialogOpen}
+        title="Selamat🎉"
+        message={`Anda telah menyelesaikan ${data.title} hari ini, semoga mendapatkan keberkahan.`}
+        onClose={() => setDialogOpen(false)}
+      />
     </Layout>
   );
 };
