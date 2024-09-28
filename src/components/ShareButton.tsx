@@ -1,4 +1,3 @@
-// src/components/ShareButton.tsx
 import { useState } from "react";
 import { ShareIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -10,9 +9,11 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { Fragment } from "react";
+import { useThemeContext } from "../hooks/useThemeContext"; // Mengimpor ThemeContext untuk Dark Mode
 
 const ShareButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useThemeContext(); // Mendapatkan tema dari context
 
   const closeModal = () => {
     setIsOpen(false);
@@ -59,7 +60,9 @@ const ShareButton = () => {
     <>
       <button
         onClick={openModal}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition duration-200 mb-6"
+        className={`flex items-center justify-center w-10 h-10 rounded-full ${
+          theme === "dark" ? "bg-green-600" : "bg-green-500"
+        } text-white hover:bg-green-700 transition duration-200 mb-6`}
         aria-label="Share"
       >
         <ShareIcon className="h-6 w-6" />
@@ -89,38 +92,52 @@ const ShareButton = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="mx-auto max-w-sm rounded-lg bg-white p-6 transform transition-all duration-300">
+              <DialogPanel
+                className={`mx-auto max-w-sm rounded-lg p-6 transform transition-all duration-300 ${
+                  theme === "dark"
+                    ? "bg-gray-800 text-white"
+                    : "bg-white text-gray-700"
+                }`}
+              >
                 <DialogTitle className="text-lg font-bold flex items-center justify-between">
                   <span>Share This</span>
                   <button onClick={closeModal} aria-label="Close">
-                    <XMarkIcon className="h-6 w-6 text-gray-600 hover:text-gray-800" />
+                    <XMarkIcon className="h-6 w-6 hover:text-gray-800" />
                   </button>
                 </DialogTitle>
-                <Description className="mt-2 text-gray-600">
+                <Description className="mt-2">
                   Choose a platform to share this link.
                 </Description>
                 <div className="mt-4 flex flex-col space-y-2">
                   <button
                     onClick={() => handleShare("copy")}
-                    className="w-full rounded-md bg-blue-500 py-2 text-white hover:bg-blue-600 transition duration-200"
+                    className={`w-full rounded-md py-2 text-white hover:bg-blue-600 transition duration-200 ${
+                      theme === "dark" ? "bg-blue-600" : "bg-blue-500"
+                    }`}
                   >
                     Copy Link
                   </button>
                   <button
                     onClick={() => handleShare("whatsapp")}
-                    className="w-full rounded-md bg-green-500 py-2 text-white hover:bg-green-600 transition duration-200"
+                    className={`w-full rounded-md py-2 text-white hover:bg-green-600 transition duration-200 ${
+                      theme === "dark" ? "bg-green-600" : "bg-green-500"
+                    }`}
                   >
                     Share on WhatsApp
                   </button>
                   <button
                     onClick={() => handleShare("facebook")}
-                    className="w-full rounded-md bg-blue-600 py-2 text-white hover:bg-blue-700 transition duration-200"
+                    className={`w-full rounded-md py-2 text-white hover:bg-blue-700 transition duration-200 ${
+                      theme === "dark" ? "bg-blue-700" : "bg-blue-600"
+                    }`}
                   >
                     Share on Facebook
                   </button>
                   <button
                     onClick={() => handleShare("twitter")}
-                    className="w-full rounded-md bg-blue-400 py-2 text-white hover:bg-blue-500 transition duration-200"
+                    className={`w-full rounded-md py-2 text-white hover:bg-blue-500 transition duration-200 ${
+                      theme === "dark" ? "bg-blue-500" : "bg-blue-400"
+                    }`}
                   >
                     Share on Twitter
                   </button>
@@ -128,7 +145,9 @@ const ShareButton = () => {
 
                 <button
                   onClick={closeModal}
-                  className="mt-4 w-full rounded-md bg-red-500 py-2 text-white hover:bg-red-700 transition duration-200"
+                  className={`mt-4 w-full rounded-md py-2 text-white hover:bg-red-700 transition duration-200 ${
+                    theme === "dark" ? "bg-red-600" : "bg-red-500"
+                  }`}
                 >
                   Close
                 </button>

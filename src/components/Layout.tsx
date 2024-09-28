@@ -1,26 +1,35 @@
-import { ReactNode } from "react";
+import { ReactNode, Fragment } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/solid";
 import { HeaderMenu } from "./HeaderMenu";
 import { Transition } from "@headlessui/react"; // Import Transition
-import { Fragment } from "react"; // Needed for the Transition component
+import { useThemeContext } from "../hooks/useThemeContext"; // Import ThemeContext untuk Dark Mode
 
 export default function Layout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme } = useThemeContext(); // Mengambil theme dari context
 
   // Check if user is on the home page
   const isHome = location.pathname === "/";
 
   return (
-    <div className="min-h-screen px-4 py-6 flex flex-col items-center">
+    <div
+      className={`min-h-screen px-4 py-6 flex flex-col items-center transition-colors duration-300 ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
+      }`}
+    >
       <div className="max-w-md w-full">
         <nav className="mb-6 flex items-center justify-between">
           {/* Back button only shown if not on the home page */}
           {!isHome && (
             <button
               onClick={() => navigate("/")}
-              className="flex items-center text-gray-700 hover:text-black"
+              className={`flex items-center ${
+                theme === "dark"
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-700 hover:text-black"
+              }`}
             >
               <ArrowLeftIcon className="h-6 w-6" />
               <span className="ml-2">Back</span>
@@ -47,8 +56,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           <div>{children}</div>
         </Transition>
 
-        <footer className="mt-10 text-gray-500 text-sm text-center">
-          <p>
+        <footer className="mt-10 text-sm text-center transition-colors duration-300">
+          <p className={theme === "dark" ? "text-gray-400" : "text-gray-500"}>
             created with{" "}
             <a
               href="https://aliifam.com" // Ganti dengan link yang diinginkan
@@ -56,7 +65,13 @@ export default function Layout({ children }: { children: ReactNode }) {
               rel="noopener noreferrer"
               className="inline-block transform transition-transform duration-300 hover:scale-110 cursor-pointer"
             >
-              <HeartIcon className="h-5 w-5 inline text-red-500 hover:text-red-600" />
+              <HeartIcon
+                className={`h-5 w-5 inline ${
+                  theme === "dark"
+                    ? "text-red-500 hover:text-red-600"
+                    : "text-red-500 hover:text-red-600"
+                }`}
+              />
             </a>{" "}
             in Yogyakarta, Indonesia
           </p>
