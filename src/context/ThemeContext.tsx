@@ -25,15 +25,26 @@ export const ThemeContext = createContext<ThemeContextProps | undefined>(
 export const ThemeContextProvider: React.FC<ThemeProviderProps> = ({
   children,
 }) => {
-  // Cek localStorage untuk tema dan ukuran font
-  const getInitialTheme = (): string =>
-    localStorage.getItem("theme") || "light";
+  // Cek localStorage untuk tema dan ukuran font, gunakan preferensi perangkat jika localStorage kosong
+  const getInitialTheme = (): string => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      return savedTheme;
+    } else {
+      // Deteksi tema dari perangkat pengguna
+      const prefersDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      return prefersDarkMode ? "dark" : "light";
+    }
+  };
+
   const getInitialFontSize = (): string =>
     localStorage.getItem("fontSize") || "medium";
   const getInitialLatin = (): boolean =>
-    localStorage.getItem("latinVisible") === "true" || false;
+    localStorage.getItem("latinVisible") === "true" || true;
   const getInitialTranslation = (): boolean =>
-    localStorage.getItem("translationVisible") === "true" || false;
+    localStorage.getItem("translationVisible") === "true" || true;
 
   // State untuk tema dan ukuran font
   const [theme, setTheme] = useState<string>(getInitialTheme);
