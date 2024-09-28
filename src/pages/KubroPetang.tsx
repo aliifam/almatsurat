@@ -53,7 +53,7 @@ export const KubroPetang = () => {
         <meta name="description" content={`${data.description}`} />
         <meta name="keywords" content={`${data.description}`} />
       </Helmet>
-      <h1 className="flex items-center justify-center text-3xl font-bold mb-4">
+      <h1 className="flex items-center justify-center text-3xl font-bold mb-4 text-center">
         {data.title}
       </h1>
       <div className="flex items-center justify-center">
