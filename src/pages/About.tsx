@@ -39,7 +39,7 @@ export const About = () => {
       >
         Website ini open source, silahkan berkontribusi di{" "}
         <a
-          href="https://github.com/username/repo" // Ganti dengan URL repo GitHub Anda
+          href="https://github.com/aliifam/almatsurat" // Ganti dengan URL repo GitHub Anda
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-500 underline"
