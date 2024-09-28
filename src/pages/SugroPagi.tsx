@@ -42,12 +42,12 @@ export const SugroPagi = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Almatsurat Sugro Pagi</title>
+        <title>{data.title}</title>
         <meta name="description" content="Almatsurat Sugro Pagi" />
         <meta name="keywords" content="Almatsurat Sugro Pagi" />
       </Helmet>
       <h1 className="flex items-center justify-center text-3xl font-bold mb-4">
-        Al-Matsurat Sugro Pagi
+        {data.title}
       </h1>
       <div className="flex items-center justify-center">
         <ShareButton />

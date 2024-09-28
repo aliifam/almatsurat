@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           {/* Back button only shown if not on the home page */}
           {!isHome && (
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate(-1)}
               className={`flex items-center ${
                 theme === "dark"
                   ? "text-gray-300 hover:text-white"
