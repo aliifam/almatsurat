@@ -17,6 +17,7 @@ export default defineConfig({
       // add this to cache all the imports
       workbox: {
         globPatterns: ["**/*"],
+        cleanupOutdatedCaches: true,
       },
       // add this to cache all the
       // static assets in the public folder

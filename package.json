@@ -8,7 +8,7 @@
     "email": "me@aliifam.com"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3011",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
