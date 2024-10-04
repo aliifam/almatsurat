@@ -7,11 +7,14 @@ import { ThemeContextProvider } from "./context/ThemeContext.tsx";
 import { registerSW } from "virtual:pwa-register";
 
 // add this to prompt for a refresh
-const updateSW = registerSW({
+registerSW({
   onNeedRefresh() {
-    if (confirm("New content available. Reload?")) {
-      updateSW(true);
+    if (confirm("New version available! Refresh to update?")) {
+      location.reload();
     }
+  },
+  onOfflineReady() {
+    alert("No internet connection found. App is running in offline mode.");
   },
 });
 

@@ -21,7 +21,7 @@ export const Header = () => {
     <Menu as="div" className="relative inline-block text-left">
       <MenuButton className="flex items-center">
         <Bars3Icon
-          className={`w-6 h-6 ${
+          className={`w-8 h-8 ${
             theme === "dark" ? "text-gray-300" : "text-gray-700"
           }`}
         />
