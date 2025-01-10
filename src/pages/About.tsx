@@ -55,7 +55,9 @@ export const About = () => {
         >
           me@aliifam.com
         </a>
-        .
+        . Jika setelah ada balasan email konfirmasi perbaikan namun belum
+        terlihat perubahan, silahkan hapus uninstall website/hapus cache/hard
+        reload website ini, terima kasih.
       </p>
 
       <p
